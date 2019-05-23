@@ -1,0 +1,21 @@
+<div class="banner">
+  <div class="container">
+    <h1>About last night</h1>
+    <p>“L’alcool est notre pire <strong>ennemi</strong>, fuir serait <strong>lâche</strong>!”</p>
+    <%= link_to "Add a cocktail", new_cocktail_path, class: "btn btn-outline-primary" %>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h1 style="border-bottom: 2px solid #22eaca">Your Cocktails</h1>
+  <div class="cards">
+   <% @cocktails.each do |cocktail| %>
+      <div class="card-category">
+      <h2><%=cocktail.name%></h2>
+      <%= link_to "See details", cocktail_path(cocktail), class: "btn btn-outline-light"%>
+      </div>
+   <% end %>
+  </div>
+</div>
+
+
