@@ -6,18 +6,39 @@
 </div>
 
 
-<div class="container">
+<div class="container mt-4">
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <h3>Recipe</h3>
-      <ul class="list-group">
+      <h2>Recipe</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <thead>
+            <th>Ingredient</th>
+            <th>Description</th>
+            <th>Action</th>
+          </thead>
           <% @cocktail.doses.each do |dose| %>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <%= dose.ingredient.name %>
-                <span class="badge badge-primary badge-pill"><%= dose.description %></span>
-            </li>
+            <tr>
+              <td><%= dose.ingredient.name %></td>
+              <td><%= dose.description %></td>
+              <td>
+                <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-trash destroy_dose"></i>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-      </ul>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
     </div>
   </div>
+
+<%= link_to "Delete", cocktail_path(@cocktail), class: "btn btn-outline-primary",
+      method: :delete,
+      data: { confirm: "Are you sure?" } %></br>
 </div>
+
+

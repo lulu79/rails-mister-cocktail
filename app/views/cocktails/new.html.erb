@@ -1,41 +1,23 @@
+<div class="banner_new">
+  <div class="container">
+    <h1>New Cocktail</h1>
+    <%= link_to "Back to list", cocktails_path, class: "btn btn-outline-primary" %>
+  </div>
+</div>
 
+<!-- avoir le nom du cocktail -->
 <div class="container">
   <div class="row">
-  <div class="col-lg-12">
-  <h1>New Cocktail</h1>
-  <%= simple_form_for [@cocktail] do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-    <div class="form-inputs">
-      <%= f.input :name %>
-    </div>
-  <% end %>
-
- <div class="row">
-  <div class="col-lg-6">
-   <h3>Recipe</h3>
-   <table class="table table-bordered">
-    <tbody>
-     <thead>
-      <th>Ingredient</th>
-      <th>Quantité</th>
-     </thead>
-     <% @cocktail.doses.each do |dose| %>
-      <tr>
-       <td><%= dose.ingredient.name %></td>
-       <td><%= dose.description %></td>
-       <td>
-        <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
-         <i class="fa fa-trash destroy_dose"></i>
-        <% end %>
-       </td>
-      </tr>
-     <% end %>
-    </tbody>
-   </table>
+    <div class="col-lg-12">
+      <%= simple_form_for [@cocktail] do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <div class="form-inputs">
+        <%= f.input :name %><!-- ajouter image url -->
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, class:'btn btn-primary' %>
+      </div>
+      <% end %>
   </div>
-  <div class="col-lg-6">
-   <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
-  </div>
- </div>
+</div>

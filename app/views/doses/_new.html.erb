@@ -1,15 +1,10 @@
-<div class="container">
-  <h1>Add</h1>
-  <%= simple_form_for [@cocktail] do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-inputs">
-      <%= f.association :ingredients %>
-  </div>
+  <h2>Add ingredients</h2>
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.association :ingredient, input_html: { class: "beautiful-dropdown" }, include_hidden: false %>
+  <%= f.input :description %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
 
-    <div class="form-actions">
-      <%= f.button :submit, class:'btn btn-primary' %>
-    </div>
-  <% end %>
-</div>
+
+
